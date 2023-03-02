@@ -1,0 +1,303 @@
+============================= test session starts ==============================
+platform darwin -- Python 3.10.9, pytest-7.2.1, pluggy-1.0.0 -- /opt/homebrew/opt/python@3.10/bin/python3.10
+cachedir: .pytest_cache
+rootdir: /Users/nico/code/sathustra/data-fast-api/tests, configfile: pytest_kitt.ini
+plugins: asyncio-0.20.3, anyio-3.6.2
+asyncio: mode=strict
+collecting ... collected 12 items
+
+tests/api/test_cloud_endpoints.py::test_root_is_up FAILED                [  8%]
+tests/api/test_cloud_endpoints.py::test_root_returns_greeting FAILED     [ 16%]
+tests/api/test_cloud_endpoints.py::test_predict_is_up FAILED             [ 25%]
+tests/api/test_cloud_endpoints.py::test_predict_is_dict FAILED           [ 33%]
+tests/api/test_cloud_endpoints.py::test_predict_has_key FAILED           [ 41%]
+tests/api/test_cloud_endpoints.py::test_cloud_api_predict FAILED         [ 50%]
+tests/api/test_endpoints.py::test_root_is_up PASSED                      [ 58%]
+tests/api/test_endpoints.py::test_root_returns_greeting PASSED           [ 66%]
+tests/api/test_endpoints.py::test_predict_is_up PASSED                   [ 75%]
+tests/api/test_endpoints.py::test_predict_is_dict FAILED                 [ 83%]
+tests/api/test_endpoints.py::test_predict_has_key FAILED                 [ 91%]
+tests/api/test_endpoints.py::test_predict_val_is_float FAILED            [100%]
+
+=================================== FAILURES ===================================
+_______________________________ test_root_is_up ________________________________
+
+    @pytest.mark.asyncio
+    async def test_root_is_up():
+>       async with AsyncClient(base_url=SERVICE_URL, timeout=10) as ac:
+
+tests/api/test_cloud_endpoints.py:17: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/opt/homebrew/lib/python3.10/site-packages/httpx/_client.py:1374: in __init__
+    super().__init__(
+/opt/homebrew/lib/python3.10/site-packages/httpx/_client.py:179: in __init__
+    self._base_url = self._enforce_trailing_slash(URL(base_url))
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <[AttributeError("'URL' object has no attribute '_uri_reference'") raised in repr()] URL object at 0x12d072830>
+url = None, kwargs = {}
+
+    def __init__(
+        self, url: typing.Union["URL", str] = "", **kwargs: typing.Any
+    ) -> None:
+        if isinstance(url, str):
+            try:
+                self._uri_reference = rfc3986.iri_reference(url).encode()
+            except rfc3986.exceptions.InvalidAuthority as exc:
+                raise InvalidURL(message=str(exc)) from None
+    
+            if self.is_absolute_url:
+                # We don't want to normalize relative URLs, since doing so
+                # removes any leading `../` portion.
+                self._uri_reference = self._uri_reference.normalize()
+        elif isinstance(url, URL):
+            self._uri_reference = url._uri_reference
+        else:
+>           raise TypeError(
+                f"Invalid type for url.  Expected str or httpx.URL, got {type(url)}: {url!r}"
+            )
+E           TypeError: Invalid type for url.  Expected str or httpx.URL, got <class 'NoneType'>: None
+
+/opt/homebrew/lib/python3.10/site-packages/httpx/_urls.py:91: TypeError
+__________________________ test_root_returns_greeting __________________________
+
+    @pytest.mark.asyncio
+    async def test_root_returns_greeting():
+>       async with AsyncClient(base_url=SERVICE_URL, timeout=10) as ac:
+
+tests/api/test_cloud_endpoints.py:24: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/opt/homebrew/lib/python3.10/site-packages/httpx/_client.py:1374: in __init__
+    super().__init__(
+/opt/homebrew/lib/python3.10/site-packages/httpx/_client.py:179: in __init__
+    self._base_url = self._enforce_trailing_slash(URL(base_url))
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <[AttributeError("'URL' object has no attribute '_uri_reference'") raised in repr()] URL object at 0x12d0ded10>
+url = None, kwargs = {}
+
+    def __init__(
+        self, url: typing.Union["URL", str] = "", **kwargs: typing.Any
+    ) -> None:
+        if isinstance(url, str):
+            try:
+                self._uri_reference = rfc3986.iri_reference(url).encode()
+            except rfc3986.exceptions.InvalidAuthority as exc:
+                raise InvalidURL(message=str(exc)) from None
+    
+            if self.is_absolute_url:
+                # We don't want to normalize relative URLs, since doing so
+                # removes any leading `../` portion.
+                self._uri_reference = self._uri_reference.normalize()
+        elif isinstance(url, URL):
+            self._uri_reference = url._uri_reference
+        else:
+>           raise TypeError(
+                f"Invalid type for url.  Expected str or httpx.URL, got {type(url)}: {url!r}"
+            )
+E           TypeError: Invalid type for url.  Expected str or httpx.URL, got <class 'NoneType'>: None
+
+/opt/homebrew/lib/python3.10/site-packages/httpx/_urls.py:91: TypeError
+______________________________ test_predict_is_up ______________________________
+
+    @pytest.mark.asyncio
+    async def test_predict_is_up():
+>       async with AsyncClient(base_url=SERVICE_URL, timeout=10) as ac:
+
+tests/api/test_cloud_endpoints.py:31: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/opt/homebrew/lib/python3.10/site-packages/httpx/_client.py:1374: in __init__
+    super().__init__(
+/opt/homebrew/lib/python3.10/site-packages/httpx/_client.py:179: in __init__
+    self._base_url = self._enforce_trailing_slash(URL(base_url))
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <[AttributeError("'URL' object has no attribute '_uri_reference'") raised in repr()] URL object at 0x12d18b640>
+url = None, kwargs = {}
+
+    def __init__(
+        self, url: typing.Union["URL", str] = "", **kwargs: typing.Any
+    ) -> None:
+        if isinstance(url, str):
+            try:
+                self._uri_reference = rfc3986.iri_reference(url).encode()
+            except rfc3986.exceptions.InvalidAuthority as exc:
+                raise InvalidURL(message=str(exc)) from None
+    
+            if self.is_absolute_url:
+                # We don't want to normalize relative URLs, since doing so
+                # removes any leading `../` portion.
+                self._uri_reference = self._uri_reference.normalize()
+        elif isinstance(url, URL):
+            self._uri_reference = url._uri_reference
+        else:
+>           raise TypeError(
+                f"Invalid type for url.  Expected str or httpx.URL, got {type(url)}: {url!r}"
+            )
+E           TypeError: Invalid type for url.  Expected str or httpx.URL, got <class 'NoneType'>: None
+
+/opt/homebrew/lib/python3.10/site-packages/httpx/_urls.py:91: TypeError
+_____________________________ test_predict_is_dict _____________________________
+
+    @pytest.mark.asyncio
+    async def test_predict_is_dict():
+>       async with AsyncClient(base_url=SERVICE_URL, timeout=10) as ac:
+
+tests/api/test_cloud_endpoints.py:38: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/opt/homebrew/lib/python3.10/site-packages/httpx/_client.py:1374: in __init__
+    super().__init__(
+/opt/homebrew/lib/python3.10/site-packages/httpx/_client.py:179: in __init__
+    self._base_url = self._enforce_trailing_slash(URL(base_url))
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <[AttributeError("'URL' object has no attribute '_uri_reference'") raised in repr()] URL object at 0x12d17e2c0>
+url = None, kwargs = {}
+
+    def __init__(
+        self, url: typing.Union["URL", str] = "", **kwargs: typing.Any
+    ) -> None:
+        if isinstance(url, str):
+            try:
+                self._uri_reference = rfc3986.iri_reference(url).encode()
+            except rfc3986.exceptions.InvalidAuthority as exc:
+                raise InvalidURL(message=str(exc)) from None
+    
+            if self.is_absolute_url:
+                # We don't want to normalize relative URLs, since doing so
+                # removes any leading `../` portion.
+                self._uri_reference = self._uri_reference.normalize()
+        elif isinstance(url, URL):
+            self._uri_reference = url._uri_reference
+        else:
+>           raise TypeError(
+                f"Invalid type for url.  Expected str or httpx.URL, got {type(url)}: {url!r}"
+            )
+E           TypeError: Invalid type for url.  Expected str or httpx.URL, got <class 'NoneType'>: None
+
+/opt/homebrew/lib/python3.10/site-packages/httpx/_urls.py:91: TypeError
+_____________________________ test_predict_has_key _____________________________
+
+    @pytest.mark.asyncio
+    async def test_predict_has_key():
+>       async with AsyncClient(base_url=SERVICE_URL, timeout=10) as ac:
+
+tests/api/test_cloud_endpoints.py:46: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/opt/homebrew/lib/python3.10/site-packages/httpx/_client.py:1374: in __init__
+    super().__init__(
+/opt/homebrew/lib/python3.10/site-packages/httpx/_client.py:179: in __init__
+    self._base_url = self._enforce_trailing_slash(URL(base_url))
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <[AttributeError("'URL' object has no attribute '_uri_reference'") raised in repr()] URL object at 0x12d1eb1c0>
+url = None, kwargs = {}
+
+    def __init__(
+        self, url: typing.Union["URL", str] = "", **kwargs: typing.Any
+    ) -> None:
+        if isinstance(url, str):
+            try:
+                self._uri_reference = rfc3986.iri_reference(url).encode()
+            except rfc3986.exceptions.InvalidAuthority as exc:
+                raise InvalidURL(message=str(exc)) from None
+    
+            if self.is_absolute_url:
+                # We don't want to normalize relative URLs, since doing so
+                # removes any leading `../` portion.
+                self._uri_reference = self._uri_reference.normalize()
+        elif isinstance(url, URL):
+            self._uri_reference = url._uri_reference
+        else:
+>           raise TypeError(
+                f"Invalid type for url.  Expected str or httpx.URL, got {type(url)}: {url!r}"
+            )
+E           TypeError: Invalid type for url.  Expected str or httpx.URL, got <class 'NoneType'>: None
+
+/opt/homebrew/lib/python3.10/site-packages/httpx/_urls.py:91: TypeError
+____________________________ test_cloud_api_predict ____________________________
+
+    @pytest.mark.asyncio
+    async def test_cloud_api_predict():
+>       async with AsyncClient(base_url=SERVICE_URL, timeout=10) as ac:
+
+tests/api/test_cloud_endpoints.py:52: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/opt/homebrew/lib/python3.10/site-packages/httpx/_client.py:1374: in __init__
+    super().__init__(
+/opt/homebrew/lib/python3.10/site-packages/httpx/_client.py:179: in __init__
+    self._base_url = self._enforce_trailing_slash(URL(base_url))
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <[AttributeError("'URL' object has no attribute '_uri_reference'") raised in repr()] URL object at 0x12d30a560>
+url = None, kwargs = {}
+
+    def __init__(
+        self, url: typing.Union["URL", str] = "", **kwargs: typing.Any
+    ) -> None:
+        if isinstance(url, str):
+            try:
+                self._uri_reference = rfc3986.iri_reference(url).encode()
+            except rfc3986.exceptions.InvalidAuthority as exc:
+                raise InvalidURL(message=str(exc)) from None
+    
+            if self.is_absolute_url:
+                # We don't want to normalize relative URLs, since doing so
+                # removes any leading `../` portion.
+                self._uri_reference = self._uri_reference.normalize()
+        elif isinstance(url, URL):
+            self._uri_reference = url._uri_reference
+        else:
+>           raise TypeError(
+                f"Invalid type for url.  Expected str or httpx.URL, got {type(url)}: {url!r}"
+            )
+E           TypeError: Invalid type for url.  Expected str or httpx.URL, got <class 'NoneType'>: None
+
+/opt/homebrew/lib/python3.10/site-packages/httpx/_urls.py:91: TypeError
+_____________________________ test_predict_is_dict _____________________________
+
+    @pytest.mark.asyncio
+    async def test_predict_is_dict():
+        from taxifare.api.fast import app
+        async with AsyncClient(app=app, base_url="http://test") as ac:
+            response = await ac.get("/predict", params=test_params)
+>       assert isinstance(response.json(), dict)
+E       assert False
+E        +  where False = isinstance(None, dict)
+E        +    where None = <bound method Response.json of <Response [200 OK]>>()
+E        +      where <bound method Response.json of <Response [200 OK]>> = <Response [200 OK]>.json
+
+tests/api/test_endpoints.py:43: AssertionError
+_____________________________ test_predict_has_key _____________________________
+
+    @pytest.mark.asyncio
+    async def test_predict_has_key():
+        from taxifare.api.fast import app
+        async with AsyncClient(app=app, base_url="http://test") as ac:
+            response = await ac.get("/predict", params=test_params)
+>       assert response.json().get('fare_amount', False)
+E       AttributeError: 'NoneType' object has no attribute 'get'
+
+tests/api/test_endpoints.py:52: AttributeError
+__________________________ test_predict_val_is_float ___________________________
+
+    @pytest.mark.asyncio
+    async def test_predict_val_is_float():
+        from taxifare.api.fast import app
+        async with AsyncClient(app=app, base_url="http://test") as ac:
+            response = await ac.get("/predict", params=test_params)
+>       assert isinstance(response.json().get('fare_amount'), float)
+E       AttributeError: 'NoneType' object has no attribute 'get'
+
+tests/api/test_endpoints.py:60: AttributeError
+=========================== short test summary info ============================
+FAILED tests/api/test_cloud_endpoints.py::test_root_is_up - TypeError: Invali...
+FAILED tests/api/test_cloud_endpoints.py::test_root_returns_greeting - TypeEr...
+FAILED tests/api/test_cloud_endpoints.py::test_predict_is_up - TypeError: Inv...
+FAILED tests/api/test_cloud_endpoints.py::test_predict_is_dict - TypeError: I...
+FAILED tests/api/test_cloud_endpoints.py::test_predict_has_key - TypeError: I...
+FAILED tests/api/test_cloud_endpoints.py::test_cloud_api_predict - TypeError:...
+FAILED tests/api/test_endpoints.py::test_predict_is_dict - assert False
+FAILED tests/api/test_endpoints.py::test_predict_has_key - AttributeError: 'N...
+FAILED tests/api/test_endpoints.py::test_predict_val_is_float - AttributeErro...
+========================= 9 failed, 3 passed in 0.33s ==========================
